@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\CoreCleanProjects\Apply\WebUI\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2025-11-15T22:09:59.6445155Z||;True|2025-11-07T00:08:00.9202511+03:30||;True|2025-11-04T20:37:13.0709469+03:30||;True|2025-11-03T02:14:55.8550654+03:30||;True|2025-10-26T02:34:58.9136861+03:30||;True|2025-10-26T02:31:04.6631935+03:30||;True|2025-10-26T02:21:56.0615537+03:30||;True|2025-10-26T01:32:01.7527580+03:30||;True|2025-10-25T21:23:44.8106429+03:30||;True|2025-10-25T20:56:46.0209071+03:30||;True|2025-10-25T19:10:16.4383048+03:30||;True|2025-10-25T18:19:17.6716234+03:30||;True|2025-10-25T17:37:26.7075276+03:30||;True|2025-10-25T16:29:06.5872142+03:30||;True|2025-10-20T01:51:55.5468370+03:30||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

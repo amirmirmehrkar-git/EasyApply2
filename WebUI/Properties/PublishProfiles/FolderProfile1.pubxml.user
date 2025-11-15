@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\CoreCleanProjects\Maher\OsabiaWebUI\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2024-11-17T13:56:52.2738228Z;True|2024-11-08T19:35:20.9197440+03:30;True|2024-11-08T02:15:58.6774838+03:30;True|2024-10-27T13:34:10.3237999+03:30;True|2024-10-27T12:38:01.2027969+03:30;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

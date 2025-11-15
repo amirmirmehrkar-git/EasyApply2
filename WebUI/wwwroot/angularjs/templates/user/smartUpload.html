@@ -1,0 +1,183 @@
+﻿<div ng-controller="suggestController as vm" ng-init="vm.initializeController()">
+
+    <div class="wrap">
+
+        <div class="card" id="ai-queue" aria-labelledby="ai-queue-title">
+
+            <div class="row" style="margin-bottom:40px">
+                <div class="col-md-10">
+                    <h1 style="margin-top:20px;text-align:left!important;margin-bottom:0!important">
+                        <span style="font-size: 30px !important" class="sub-gradient">Smart Document Upload ⚡</span>
+                    </h1>
+                    <p class="lead">
+                        Upload, analyze, match, and apply automatically with AI
+                    </p>
+                </div>
+            </div>
+
+            <div class="steps" aria-hidden="false">
+                <div id="tab1" class="step active">
+                    <div class="circle">
+                        <i class="ti ti-upload"></i>
+                    </div>
+
+                    <div class="label font_weight_500">Upload</div>
+                </div>
+                <div class="connector"></div>
+
+                <div id="tab2" class="step inactive">
+                    <div class="circle">
+                        <i class="ti ti-circle-check"></i>
+                    </div>
+
+                    <div class="label font_weight_500">AI Analysis</div>
+                </div>
+                <div class="connector"></div>
+
+                <div id="tab3" class="step inactive">
+                    <div class="circle">
+                        <i class="ti ti-settings-automation"></i>
+                    </div>
+
+                    <div class="label font_weight_500">Job Matching</div>
+                </div>
+                <div class="connector"></div>
+
+                <div id="tab4" class="step inactive">
+                    <div class="circle">
+                        <i class="ti ti-mail"></i>
+                    </div>
+
+                    <div class="label font_weight_500">Cover Letters</div>
+                </div>
+                <div class="connector"></div>
+
+                <div id="tab5" class="step inactive">
+                    <div class="circle">
+                        <i class="ti ti-send"></i>
+                    </div>
+
+                    <div class="label font_weight_500">Ready to Send</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div style="flex-direction: row!important" class="card row">
+
+            <div class="col-md-5">
+                <div style="display:flex;align-items:center;margin-bottom:12px">
+                    <div>
+                        <div style="font-weight:700;font-size:16px">Document Upload</div>
+                        <div class="font_weight_500" style="color:var(--muted);font-weight:700;font-size:13px">Upload your resume, cover letter, and certificates</div>
+                    </div>
+                </div>
+                <div class="upload-area" aria-hidden="true">
+                    <div class="upload-ico">
+                        <i class="ti ti-upload"></i>
+                    </div>
+                    <p class="desc font_weight_500">Supports PDF, files up to 10MB</p>
+                    <div style="height:12px"></div>
+
+                    <input type="file" accept=".pdf" file-auto-upload="vm.send(file)" />
+
+                    <div ng-if="vm.result.skills" class="font_weight_500"
+                         style="color:var(--muted);font-weight:700;font-size:13px;margin-top:20px;margin-bottom:10px;text-align:left!important">
+                        Extracted Skills:
+                    </div>
+                    <div style="display:table-row!important" class="d-flex">
+                        <span style="margin-right:5px;margin-bottom:5px" ng-repeat="row in vm.result.skills" class="btn">{{row.Title}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div style="display:flex;align-items:center;margin-bottom:12px">
+                    <div>
+                        <div style="font-weight:700;font-size:16px">
+                            Job Matches
+                        </div>
+                        <div class="font_weight_500" style="color:var(--muted);font-weight:700;font-size:13px">
+                            AI-found jobs with personalized cover letters
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height:233px" class="upload-area" aria-hidden="true">
+
+                    <div ng-if="!vm.result.res" style="margin-top:50px" class="upload-ico">
+                        <i class="ti ti-settings-automation"></i>
+                    </div>
+                    <div ng-if="!vm.result.res" class="font_weight_500" style="color:var(--muted);font-weight:700;font-size:13px">
+                        Upload your documents to start finding jobs!
+                    </div>
+
+                    <div ng-repeat="row in vm.result.res" style="margin:10px" class="box2 row">
+                        <div class="job" role="article">
+                            <div class="details">
+                                <span ng-click="vm.selectJob(row)">{{row.Title}}</span>
+                                <div style="text-align: left;">
+                                    <i style="font-size:13px;" class="ti ti-home-2"></i>
+                                    {{row.Company}}
+                                </div>
+
+                                <div style="margin-top:10px;text-align: left;">
+                                    <i style="font-size:13px;color:forestgreen" class="ti ti-current-location"></i>
+                                    {{row.Location}}
+                                </div>
+                                <div style="margin-top:10px;text-align: left;">
+                                    <i ng-if="row.Type == 0" style="font-size:13px;color:dodgerblue"
+                                       class="ti ti-brand-linkedin"></i>
+                                    <i ng-if="row.Type == 1" style="font-size:13px;color:forestgreen"
+                                       class="ti ti-brand-xing"></i>
+                                    <i ng-if="row.Type == 2" style="font-size:13px;color:orangered"
+                                       class="ti ti-brand-steam"></i>
+
+                                    {{vm.jobTypes[row.Type]}}
+                                </div>
+                            </div>
+                            <div class="job-footer">
+                                <div class="badges">
+                                    <button data-dismiss="modal" data-bs-toggle="modal" data-bs-target="#coverLetterModal"
+                                            ng-click="vm.getRow(row)" type="button"
+                                            class="box3 btn btn-danger" id="confirmDelete">
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="coverLetterModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content modal-lg">
+
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+
+                <div style="text-align:left!important;text-justify:inter-word!important" class="modal-body text-center">
+                    <pre>
+                        {{vm.CoverLetter}}
+                    </pre>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="box3 btn ghost" data-bs-dismiss="modal">Close</button>
+                    <button ng-click="vm.sendApplication()" type="button"
+                            class="box3 btn btn-danger" id="confirmDelete">
+                        Send
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
